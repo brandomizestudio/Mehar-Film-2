@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mehar Film - Complete Photo Gallery. Browse our extensive collection of wedding, haldi, and ring ceremony photography.">
+  <meta name="keywords" content="wedding gallery, photo collection, haldi photos, ring ceremony photos, wedding photography gallery">
+  <title>Photo Gallery - Mehar Film</title>
+  
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+  <link rel="stylesheet" href="css/components.css?v=2.0">
+  <link rel="stylesheet" href="css/animations.css?v=2.0">
+  <style>
+    /* Gallery Specific Styles */
+    .gallery-hero {
+      position: relative;
+      min-height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--color-off-white) 0%, var(--color-silver-50) 100%);
+      padding: 8rem 0 4rem;
+      text-align: center;
+    }
+
+    .gallery-hero-content {
+      max-width: 800px;
+      padding: 0 2rem;
+      animation: fadeInUp 0.8s ease-out;
+    }
+
+    .gallery-hero-title {
+      font-size: clamp(2.5rem, 6vw, 4rem);
+      font-weight: 600;
+      color: var(--color-dark);
+      margin-bottom: 1rem;
+      letter-spacing: -0.03em;
+    }
+
+    .gallery-hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: var(--color-dark-light);
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+
+    .gallery-stats {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      margin-top: 2rem;
+    }
+
+    .gallery-stat {
+      text-align: center;
+    }
+
+    .gallery-stat-number {
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--color-dark);
+      display: block;
+      margin-bottom: 0.25rem;
+    }
+
+    .gallery-stat-label {
+      font-size: 0.875rem;
+      color: var(--color-dark-light);
+    }
+
+    /* Filter Section */
+    .gallery-filters {
+      position: sticky;
+      top: 4rem;
+      z-index: 50;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--color-silver-200);
+      padding: 1.5rem 0;
+      margin-bottom: 0;
+    }
+
+    .filter-container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      padding: 0.75rem 2rem;
+      border-radius: 2rem;
+      font-weight: 500;
+      font-size: 0.9375rem;
+      background: var(--color-silver-100);
+      color: var(--color-dark-light);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .filter-btn:hover {
+      background: var(--color-silver-200);
+      transform: translateY(-1px);
+    }
+
+    .filter-btn.active {
+      background: var(--color-dark);
+      color: var(--color-white);
+      border-color: var(--color-dark);
+    }
+
+    /* Gallery Grid */
+    .gallery-main {
+      padding: 3rem 0 5rem;
+      background: var(--color-off-white);
+    }
+
+    .gallery-grid {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 2rem;
+      column-width: 320px;
+      column-gap: 1.75rem;
+      width: 100%;
+    }
+
+    .gallery-item {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      margin: 0 0 1.75rem;
+      border-radius: 1.25rem;
+      background: var(--color-silver-100);
+      cursor: pointer;
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.04), 0 1px 4px rgba(0, 0, 0, 0.02);
+      animation: fadeIn 0.5s ease-out;
+      break-inside: avoid;
+    }
+
+    .gallery-item:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08), 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .gallery-item-image {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border-radius: 1.25rem;
+      background: var(--color-silver-100);
+    }
+
+    .gallery-item-image img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .gallery-item:hover .gallery-item-image img {
+      transform: scale(1.05);
+    }
+
+    .gallery-item-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.5), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      display: flex;
+      align-items: flex-end;
+      padding: 1.5rem;
+    }
+
+    .gallery-item:hover .gallery-item-overlay {
+      opacity: 1;
+    }
+
+    .gallery-item-category {
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(20px);
+      padding: 0.5rem 1rem;
+      border-radius: 2rem;
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--color-dark);
+      text-transform: capitalize;
+    }
+
+    /* Lightbox */
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0, 0, 0, 0.92);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease-out;
+    }
+
+    .lightbox.active {
+      display: flex;
+      animation: lightboxFadeIn 0.3s ease-out forwards;
+    }
+
+    .lightbox-content {
+      position: relative;
+      max-width: 85vw;
+      max-height: 85vh;
+      transform: scale(0.9);
+      opacity: 0;
+      animation: lightboxZoomIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      transition: opacity 0.2s ease-out, transform 0.2s ease-out;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 85vh;
+      object-fit: contain;
+      border-radius: 1.5rem;
+      box-shadow: 0 20px 80px rgba(0, 0, 0, 0.5);
+    }
+
+    @keyframes lightboxFadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes lightboxZoomIn {
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .lightbox-close {
+      position: fixed;
+      top: 2rem;
+      right: 2rem;
+      width: 3.5rem;
+      height: 3.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10000;
+    }
+
+    .lightbox-close:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: rotate(90deg) scale(1.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .lightbox-close:active {
+      transform: rotate(90deg) scale(0.95);
+    }
+
+    .lightbox-close svg {
+      stroke: white;
+      width: 24px;
+      height: 24px;
+    }
+
+    .lightbox-nav {
+      position: fixed;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3.5rem;
+      height: 3.5rem;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      z-index: 10000;
+    }
+
+    .lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.25);
+      transform: translateY(-50%) scale(1.1);
+      border-color: rgba(255, 255, 255, 0.5);
+    }
+
+    .lightbox-nav:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .lightbox-nav.prev {
+      left: 2rem;
+    }
+
+    .lightbox-nav.next {
+      right: 2rem;
+    }
+
+    .lightbox-nav svg {
+      stroke: white;
+      width: 24px;
+      height: 24px;
+    }
+
+    .lightbox-counter {
+      position: fixed;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.875rem 1.75rem;
+      border-radius: 2rem;
+      color: white;
+      font-size: 0.9375rem;
+      font-weight: 500;
+      z-index: 10000;
+      letter-spacing: 0.02em;
+    }
+
+    /* Loading State */
+    .gallery-loading {
+      text-align: center;
+      padding: 3rem 0;
+      color: var(--color-dark-light);
+    }
+
+    .gallery-empty {
+      text-align: center;
+      padding: 3rem 2rem;
+      color: var(--color-dark-light);
+    }
+
+    .gallery-empty h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--color-dark);
+    }
+
+    @media (max-width: 1200px) {
+      .gallery-grid {
+        column-width: 280px;
+        column-gap: 1.5rem;
+        padding: 0 1.75rem;
+      }
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .gallery-hero {
+        padding: 6rem 0 3rem;
+        min-height: 50vh;
+      }
+
+      .gallery-stats {
+        gap: 2rem;
+      }
+
+      .gallery-stat-number {
+        font-size: 1.5rem;
+      }
+
+      .gallery-filters {
+        top: 3.5rem;
+      }
+
+      .gallery-main {
+        padding: 2rem 0 3rem;
+      }
+
+      .gallery-grid {
+        column-width: 230px;
+        column-gap: 1.25rem;
+        padding: 0 1.5rem;
+      }
+
+      .lightbox-content {
+        max-width: 90vw;
+        max-height: 80vh;
+      }
+
+      .lightbox-image {
+        max-height: 80vh;
+        border-radius: 1rem;
+      }
+
+      .lightbox-close,
+      .lightbox-nav {
+        width: 3rem;
+        height: 3rem;
+      }
+
+      .lightbox-close {
+        top: 1.5rem;
+        right: 1.5rem;
+      }
+
+      .lightbox-nav.prev {
+        left: 1rem;
+      }
+
+      .lightbox-nav.next {
+        right: 1rem;
+      }
+
+      .lightbox-counter {
+        bottom: 1.5rem;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .gallery-main {
+        padding: 1.5rem 0 2.5rem;
+      }
+
+      .gallery-grid {
+        column-width: 100%;
+        column-gap: 1rem;
+        padding: 0 1.25rem;
+      }
+
+      .lightbox-content {
+        max-width: 95vw;
+        max-height: 75vh;
+      }
+
+      .lightbox-image {
+        max-height: 75vh;
+        border-radius: 0.75rem;
+      }
+
+      .lightbox-close,
+      .lightbox-nav {
+        width: 2.75rem;
+        height: 2.75rem;
+      }
+
+      .lightbox-close {
+        top: 1rem;
+        right: 1rem;
+      }
+
+      .lightbox-nav.prev {
+        left: 0.5rem;
+      }
+
+      .lightbox-nav.next {
+        right: 0.5rem;
+      }
+
+      .lightbox-counter {
+        bottom: 1rem;
+        padding: 0.625rem 1.25rem;
+        font-size: 0.8125rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <nav class="nav">
+      <a href="index.html" class="logo">Mehar Film</a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="venues.html">Venues</a></li>
+        <li><a href="makeup-artists.html">Makeup Artists</a></li>
+        <li><a href="gallery.html" style="color: var(--color-dark);">Gallery</a></li>
+        <li><a href="#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+      
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="gallery-hero">
+    <div class="gallery-hero-content">
+      <h1 class="gallery-hero-title">Photo Gallery</h1>
+      <p class="gallery-hero-subtitle">
+        Explore our complete collection of beautiful moments captured with elegance and artistry
+      </p>
+      <div class="gallery-stats">
+        <div class="gallery-stat">
+          <span class="gallery-stat-number" id="total-images">0</span>
+          <span class="gallery-stat-label">Total Images</span>
+        </div>
+        <div class="gallery-stat">
+          <span class="gallery-stat-number">3</span>
+          <span class="gallery-stat-label">Collections</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Section -->
+  <div class="gallery-filters">
+    <div class="filter-container">
+      <button class="filter-btn active" data-filter="all">All Photos</button>
+      <button class="filter-btn" data-filter="wedding">Wedding</button>
+      <button class="filter-btn" data-filter="haldi">Haldi</button>
+      <button class="filter-btn" data-filter="ring-ceremony">Ring Ceremony</button>
+    </div>
+  </div>
+
+  <!-- Gallery Grid -->
+  <section class="gallery-main">
+    <div class="container">
+      <div class="gallery-loading" id="gallery-loading">
+        <p>Loading images...</p>
+      </div>
+      <div class="gallery-grid" id="gallery-grid"></div>
+      <div class="gallery-empty" id="gallery-empty" style="display: none;">
+        <h3>No images found</h3>
+        <p>Try selecting a different category</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox">
+    <button class="lightbox-close" aria-label="Close">
+      <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+        <path d="M6 18L18 6M6 6l12 12"/>
+      </svg>
+    </button>
+    
+    <button class="lightbox-nav prev" aria-label="Previous">
+      <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+        <path d="M15 19l-7-7 7-7"/>
+      </svg>
+    </button>
+    
+    <div class="lightbox-content">
+      <img class="lightbox-image" id="lightbox-image" src="" alt="">
+    </div>
+    
+    <button class="lightbox-nav next" aria-label="Next">
+      <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor">
+        <path d="M9 5l7 7-7 7"/>
+      </svg>
+    </button>
+    
+    <div class="lightbox-counter" id="lightbox-counter">1 / 1</div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Mehar Film</h3>
+          <p>Capturing your precious moments with elegance and artistry. Premium wedding and pre-wedding photography services that tell your unique story.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="venues.html">Venues</a></li>
+            <li><a href="makeup-artists.html">Makeup Artists</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:meharfilm@gmail.com">meharfilm@gmail.com</a></li>
+            <li><a href="tel:+919518470034">+91 95184 70034</a></li>
+            <li>Hisar, India</li>
+            <li><a href="https://instagram.com/mehar_film" target="_blank" rel="noopener">@mehar_film</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Mehar Film. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-credit">
+          Secured & Created by
+          <a href="https://brandomize.netlify.app/" target="_blank" rel="noopener">brandomize.studio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="js/gallery-data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+

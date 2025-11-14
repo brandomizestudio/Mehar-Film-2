@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse our collection of wedding and pre-wedding photography stories. Each couple has a unique story to tell.">
+  <meta name="keywords" content="wedding stories, pre-wedding photography, wedding albums, couple stories">
+  <title>Our Stories - Mehar Film</title>
+  
+  <link rel="stylesheet" href="css/style.css?v=2.0">
+  <link rel="stylesheet" href="css/components.css?v=2.0">
+  <link rel="stylesheet" href="css/animations.css?v=2.0">
+  <link rel="preconnect" href="https://images.unsplash.com">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header scrolled">
+    <nav class="nav">
+      <a href="index.html" class="logo">Mehar Film</a>
+      
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="stories.html">Stories</a></li>
+        <li><a href="venues.html">Venues</a></li>
+        <li><a href="makeup-artists.html">Makeup Artists</a></li>
+        <li><a href="gallery.html">Gallery</a></li>
+        <li><a href="#contact" class="btn btn-primary">Contact</a></li>
+      </ul>
+      
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M4 6h16M4 12h16M4 18h16"></path></svg>
+      </button>
+    </nav>
+  </header>
+
+  <!-- Header Section -->
+  <section class="section bg-silver" style="padding-top: 8rem;">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h1 class="section-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Our Stories</h1>
+        <p class="section-description">Every couple has a unique story to tell. Browse through our collection of weddings and pre-wedding shoots, each one a beautiful testament to love.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Filter Tabs -->
+  <div class="filter-tabs">
+    <div class="container">
+      <div class="filter-buttons">
+        <button class="filter-btn active" data-filter="all">All Stories</button>
+        <button class="filter-btn" data-filter="wedding">Weddings</button>
+        <button class="filter-btn" data-filter="pre-wedding">Pre-Weddings</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stories Grid -->
+  <section class="section bg-white">
+    <div class="container">
+      <div id="stories-grid" class="grid grid-cols-3"></div>
+      
+      <div id="empty-state" class="text-center" style="padding: 4rem 0; display: none;">
+        <p style="font-size: 1.125rem; color: var(--color-dark-light);">No stories found in this category.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Story Modal -->
+  <div id="story-modal" class="story-modal">
+    <div class="story-modal-overlay"></div>
+    <div class="story-modal-content">
+      <button class="story-modal-close" aria-label="Close">
+        <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+      
+      <div class="story-modal-body">
+        <div class="story-modal-hero">
+          <img id="modal-hero-image" src="" alt="">
+          <div class="story-modal-badge" id="modal-badge"></div>
+        </div>
+        
+        <div class="story-modal-info">
+          <h2 id="modal-couple-name"></h2>
+          <div class="story-modal-meta">
+            <span id="modal-location"></span>
+            <span class="story-modal-separator">•</span>
+            <span id="modal-date"></span>
+          </div>
+          <p id="modal-story" class="story-modal-description"></p>
+          
+          <div class="story-modal-gallery" id="modal-gallery"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h3>Mehar Film</h3>
+          <p>Capturing your precious moments with elegance and artistry. Premium wedding and pre-wedding photography services that tell your unique story.</p>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="stories.html">Stories</a></li>
+            <li><a href="venues.html">Venues</a></li>
+            <li><a href="makeup-artists.html">Makeup Artists</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        
+        <div class="footer-section">
+          <h4>Contact</h4>
+          <ul class="footer-links">
+            <li><a href="mailto:meharfilm@gmail.com">meharfilm@gmail.com</a></li>
+            <li><a href="tel:+919518470034">+91 95184 70034</a></li>
+            <li>Hisar, India</li>
+            <li><a href="https://instagram.com/mehar_film" target="_blank" rel="noopener">@mehar_film</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <p>&copy; 2024 Mehar Film. All rights reserved.</p>
+        <div class="footer-bottom-links">
+          <a href="#">Privacy Policy</a>
+          <a href="#">Terms of Service</a>
+        </div>
+        <div class="footer-credit">
+          Secured & Created by
+          <a href="https://brandomize.netlify.app/" target="_blank" rel="noopener">brandomize.studio</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/stories-data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    let currentFilter = 'all';
+    
+    function renderStories(filter = 'all') {
+      const container = document.getElementById('stories-grid');
+      const emptyState = document.getElementById('empty-state');
+      
+      if (!container) {
+        console.error('Stories grid container not found');
+        return;
+      }
+      
+      // Check for storiesData in multiple ways
+      const stories = typeof storiesData !== 'undefined' ? storiesData : (typeof window !== 'undefined' && window.storiesData ? window.storiesData : null);
+      
+      if (!stories) {
+        console.error('storiesData is not defined');
+        container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--color-dark-light);">Unable to load stories. Please refresh the page.</p>';
+        return;
+      }
+      
+      if (!Array.isArray(stories) || stories.length === 0) {
+        console.error('storiesData is empty or not an array');
+        container.innerHTML = '<p style="text-align: center; padding: 2rem; color: var(--color-dark-light);">No stories available.</p>';
+        return;
+      }
+      
+      const filtered = filter === 'all' 
+        ? stories 
+        : stories.filter(story => story.type === filter);
+      
+      container.innerHTML = '';
+      
+      if (filtered.length === 0) {
+        emptyState.style.display = 'block';
+        return;
+      } else {
+        emptyState.style.display = 'none';
+      }
+      
+      filtered.forEach((story, index) => {
+        const card = document.createElement('div');
+        card.className = 'story-card';
+        card.innerHTML = `
+          <a href="#" class="story-card-link" data-story-id="${story.id}">
+            <div class="card-image">
+              <img src="${story.heroImage}" alt="${story.coupleName} - ${story.location}" loading="lazy">
+              <span class="story-badge">${story.type === 'pre-wedding' ? 'Pre-Wedding' : 'Wedding'}</span>
+            </div>
+            <div class="card-content">
+              <h3>${story.coupleName}</h3>
+              <p class="card-location">
+                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                ${story.location}
+              </p>
+              <p class="story-excerpt">${story.excerpt}</p>
+              <span class="story-link">View Story →</span>
+            </div>
+          </a>
+        `;
+        container.appendChild(card);
+        
+        // Add click event to open modal
+        const link = card.querySelector('.story-card-link');
+        link.addEventListener('click', (e) => {
+          e.preventDefault();
+          openStoryModal(story);
+        });
+      });
+    }
+    
+    // Open story modal
+    function openStoryModal(story) {
+      const modal = document.getElementById('story-modal');
+      
+      // Populate modal content
+      document.getElementById('modal-hero-image').src = story.heroImage;
+      document.getElementById('modal-hero-image').alt = story.coupleName;
+      document.getElementById('modal-badge').textContent = story.type === 'pre-wedding' ? 'Pre-Wedding' : 'Wedding';
+      document.getElementById('modal-couple-name').textContent = story.coupleName;
+      document.getElementById('modal-location').textContent = story.location;
+      document.getElementById('modal-date').textContent = story.date;
+      document.getElementById('modal-story').textContent = story.fullStory;
+      
+      // Populate gallery
+      const gallery = document.getElementById('modal-gallery');
+      gallery.innerHTML = '';
+      story.images.forEach(image => {
+        const item = document.createElement('div');
+        item.className = 'story-modal-gallery-item';
+        const img = document.createElement('img');
+        img.src = image;
+        img.alt = `${story.coupleName} gallery photo`;
+        img.loading = 'lazy';
+
+        const applyOrientation = () => {
+          if (!img.naturalWidth || !img.naturalHeight) return;
+          if (img.naturalHeight > img.naturalWidth) {
+            item.classList.add('portrait');
+          } else {
+            item.classList.remove('portrait');
+          }
+        };
+
+        if (img.complete) {
+          applyOrientation();
+        } else {
+          img.addEventListener('load', applyOrientation);
+        }
+
+        item.appendChild(img);
+        gallery.appendChild(item);
+      });
+      
+      // Show modal
+      modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    // Close story modal
+    function closeStoryModal() {
+      const modal = document.getElementById('story-modal');
+      modal.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    
+    // Filter functionality
+    document.addEventListener('DOMContentLoaded', () => {
+      renderStories('all');
+      
+      document.querySelectorAll('.filter-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const filter = btn.dataset.filter;
+          currentFilter = filter;
+          
+          // Update active state
+          document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          
+          // Render filtered stories
+          renderStories(filter);
+        });
+      });
+      
+      // Modal close button
+      document.querySelector('.story-modal-close').addEventListener('click', closeStoryModal);
+      
+      // Close on overlay click
+      document.querySelector('.story-modal-overlay').addEventListener('click', closeStoryModal);
+      
+      // Close on escape key
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          closeStoryModal();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
+

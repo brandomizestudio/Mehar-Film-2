@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Test Venues</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+      padding: 20px;
+      background: #f5f5f5;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .card img {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+    .card-content {
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .status {
+      background: #4CAF50;
+      color: white;
+      padding: 10px;
+      text-align: center;
+      margin-bottom: 20px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="status" id="status">Loading venues...</div>
+  <h1>Test Venues Page</h1>
+  <div id="venues-grid" class="grid"></div>
+
+  <script src="js/venues-data.js"></script>
+  <script>
+    console.log('Script started');
+    console.log('venuesData:', venuesData);
+    
+    document.addEventListener('DOMContentLoaded', () => {
+      console.log('DOM loaded');
+      const container = document.getElementById('venues-grid');
+      const statusDiv = document.getElementById('status');
+      
+      if (!venuesData) {
+        statusDiv.style.background = 'red';
+        statusDiv.textContent = 'ERROR: venuesData not found!';
+        return;
+      }
+      
+      statusDiv.textContent = `Loading ${venuesData.length} venues...`;
+      
+      venuesData.forEach((venue, index) => {
+        console.log('Creating card for:', venue.name);
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+          <img src="${venue.image}" alt="${venue.name}">
+          <div class="card-content">
+            <h3>${venue.name}</h3>
+            <p>📍 ${venue.location}</p>
+            <p>Capacity: ${venue.capacity}</p>
+            <p>Food: ${venue.food}</p>
+            <p>Area: ${venue.area}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      
+      statusDiv.style.background = '#4CAF50';
+      statusDiv.textContent = `✅ Successfully loaded ${venuesData.length} venues!`;
+      
+      console.log('Cards created:', container.children.length);
+    });
+  </script>
+</body>
+</html>
+
