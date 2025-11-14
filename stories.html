@@ -22,10 +22,12 @@
   <meta name="twitter:site" content="@mehar_film">
   <meta name="twitter:creator" content="@mehar_film">
   
-  <link rel="stylesheet" href="css/style.css?v=2.0">
-  <link rel="stylesheet" href="css/components.css?v=2.0">
-  <link rel="stylesheet" href="css/animations.css?v=2.0">
-  <link rel="preconnect" href="https://images.unsplash.com">
+  <link rel="preload" href="css/style.css?v=2.1" as="style">
+  <link rel="preload" href="css/components.css?v=2.1" as="style">
+  <link rel="stylesheet" href="css/style.css?v=2.1">
+  <link rel="stylesheet" href="css/components.css?v=2.1">
+  <link rel="stylesheet" href="css/animations.css?v=2.1" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="css/animations.css?v=2.1"></noscript>
 </head>
 <body>
   <!-- Header -->
@@ -158,8 +160,8 @@
     </div>
   </footer>
 
-  <script src="js/stories-data.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/stories-data.js" defer></script>
+  <script src="js/main.js" defer></script>
   <script>
     let currentFilter = 'all';
     
