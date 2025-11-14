@@ -2,10 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Browse our collection of wedding and pre-wedding photography stories. Each couple has a unique story to tell.">
-  <meta name="keywords" content="wedding stories, pre-wedding photography, wedding albums, couple stories">
-  <title>Our Stories - Mehar Film</title>
+  <title>Wedding Photography Stories in Hisar | Mehar Film</title>
+  <meta name="description" content="Browse best wedding photography in Hisar, intimate pre-wedding photography in Hisar, and cinematic couple photoshoots created by Mehar Film, the Luxury Photography & Film Company.">
+  <meta name="keywords" content="best wedding photography in Hisar, wedding photography in Hisar, pre-wedding photography in Hisar, couple photoshoot in Hisar, couple photography, portrait photography, best photographer of Hisar, photographer near me in Hisar, birthday photography in Hisar, corporate photography in Hisar, food photography in Hisar">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://meharfilm.com/stories/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wedding Photography Stories in Hisar | Mehar Film">
+  <meta property="og:description" content="See luxury wedding, pre-wedding, and couple photography stories from Hisar by Mehar Film.">
+  <meta property="og:url" content="https://meharfilm.com/stories/">
+  <meta property="og:site_name" content="Mehar Film">
+  <meta property="og:image" content="https://meharfilm.com/public/image-page-data/wedding/UWF09905.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wedding Photography Stories in Hisar | Mehar Film">
+  <meta name="twitter:description" content="Discover how Mehar Film documents weddings, pre-weddings, portraits, food, and corporate events across Hisar with luxury storytelling.">
+  <meta name="twitter:image" content="https://meharfilm.com/public/image-page-data/wedding/UWF09905.jpeg">
+  <meta name="twitter:site" content="@mehar_film">
+  <meta name="twitter:creator" content="@mehar_film">
   
   <link rel="stylesheet" href="css/style.css?v=2.0">
   <link rel="stylesheet" href="css/components.css?v=2.0">
@@ -16,10 +31,10 @@
   <!-- Header -->
   <header class="header scrolled">
     <nav class="nav">
-      <a href="index.html" class="logo">Mehar Film</a>
+      <a href="/" class="logo">Mehar Film</a>
       
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="stories.html">Stories</a></li>
         <li><a href="venues.html">Venues</a></li>
         <li><a href="makeup-artists.html">Makeup Artists</a></li>
@@ -37,8 +52,8 @@
   <section class="section bg-silver" style="padding-top: 8rem;">
     <div class="container">
       <div class="section-header fade-in">
-        <h1 class="section-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Our Stories</h1>
-        <p class="section-description">Every couple has a unique story to tell. Browse through our collection of weddings and pre-wedding shoots, each one a beautiful testament to love.</p>
+        <h1 class="section-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Wedding Photography Stories in Hisar</h1>
+        <p class="section-description">Every couple has a unique story to tell, and our Luxury Photography & Film Company showcases best wedding photography in Hisar, cinematic pre-wedding photography in Hisar, couple photoshoot in Hisar experiences, portrait photography, and even birthday or corporate celebrations.</p>
       </div>
     </div>
   </section>
@@ -77,7 +92,7 @@
       
       <div class="story-modal-body">
         <div class="story-modal-hero">
-          <img id="modal-hero-image" src="" alt="">
+          <img id="modal-hero-image" src="" alt="Wedding photography in Hisar story highlight">
           <div class="story-modal-badge" id="modal-badge"></div>
         </div>
         
@@ -102,13 +117,13 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>Mehar Film</h3>
-          <p>Capturing your precious moments with elegance and artistry. Premium wedding and pre-wedding photography services that tell your unique story.</p>
+          <p>Luxury Photography & Film Company for best wedding photography in Hisar, pre-wedding photography in Hisar, portrait photography, birthday celebrations, food photography in Hisar, and corporate photography in Hisar.</p>
         </div>
         
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="stories.html">Stories</a></li>
             <li><a href="venues.html">Venues</a></li>
             <li><a href="makeup-artists.html">Makeup Artists</a></li>
@@ -301,6 +316,15 @@
         }
       });
     });
+  </script>
+  <script>
+    (function() {
+      const { pathname, search, hash } = window.location;
+      if (pathname.endsWith('/index.html')) {
+        const cleanPath = pathname.replace(/index\.html$/, '/') || '/';
+        history.replaceState({}, '', `${cleanPath}${search}${hash}`);
+      }
+    })();
   </script>
 </body>
 </html>

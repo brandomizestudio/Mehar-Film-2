@@ -2,10 +2,25 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Discover the finest wedding venues in Hisar. Browse banquet halls, marriage gardens, and luxury resorts perfect for your special day.">
-  <meta name="keywords" content="wedding venues Hisar, banquet halls, marriage gardens, wedding resorts">
-  <title>Top Wedding Venues in Hisar | Wedding Yantra</title>
+  <title>Wedding Venues & Photography in Hisar | Mehar Film</title>
+  <meta name="description" content="Discover Hisar wedding venues and book the best wedding photography in Hisar with Mehar Film, the Luxury Photography & Film Company for pre-wedding photography, couple photoshoots, portrait photography, birthdays, food shoots, and corporate photography.">
+  <meta name="keywords" content="best wedding photography in Hisar, wedding photography in Hisar, pre-wedding photography in Hisar, couple photoshoot in Hisar, couple photography, portrait photography, food photography in Hisar, best photographer of Hisar, photographer near me in Hisar, birthday photography in Hisar, corporate photography in Hisar">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://meharfilm.com/venues/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Wedding Venues & Photography in Hisar | Mehar Film">
+  <meta property="og:description" content="Browse venues and secure luxury wedding, pre-wedding, and portrait photography in Hisar with Mehar Film.">
+  <meta property="og:url" content="https://meharfilm.com/venues/">
+  <meta property="og:site_name" content="Mehar Film">
+  <meta property="og:image" content="https://meharfilm.com/public/image-page-data/wedding/UWF09905.jpeg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Wedding Venues & Photography in Hisar | Mehar Film">
+  <meta name="twitter:description" content="Plan your celebration with the best wedding photography in Hisar, portrait photography, food photography in Hisar, and corporate photography support.">
+  <meta name="twitter:image" content="https://meharfilm.com/public/image-page-data/wedding/UWF09905.jpeg">
+  <meta name="twitter:site" content="@mehar_film">
+  <meta name="twitter:creator" content="@mehar_film">
   
   <link rel="stylesheet" href="css/style.css?v=2.0">
   <link rel="stylesheet" href="css/components.css?v=2.0">
@@ -16,10 +31,10 @@
   <!-- Header -->
   <header class="header scrolled">
     <nav class="nav">
-      <a href="index.html" class="logo">Mehar Film</a>
+      <a href="/" class="logo">Mehar Film</a>
       
       <ul class="nav-links">
-        <li><a href="index.html">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="stories.html">Stories</a></li>
         <li><a href="venues.html">Venues</a></li>
         <li><a href="makeup-artists.html">Makeup Artists</a></li>
@@ -37,8 +52,8 @@
   <section class="section bg-silver" style="padding-top: 8rem;">
     <div class="container">
       <div class="section-header fade-in">
-        <h1 class="section-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Top Wedding Venues</h1>
-        <p class="section-description">Discover the perfect setting for your special day. From elegant banquet halls to stunning outdoor gardens, find your dream venue in Hisar.</p>
+        <h1 class="section-title" style="font-size: clamp(2.5rem, 6vw, 4rem);">Wedding Venues & Photography in Hisar</h1>
+        <p class="section-description">Discover the perfect setting and book the best wedding photography in Hisar, pre-wedding photography in Hisar, couple photoshoot in Hisar experiences, and portrait photography with our Luxury Photography & Film Company.</p>
       </div>
     </div>
   </section>
@@ -55,7 +70,7 @@
     <div class="container">
       <div class="section-header fade-in">
         <h2 class="section-title">Need Help Choosing the Perfect Venue?</h2>
-        <p class="section-description">Our wedding planning experts are here to help you find the ideal venue that matches your vision and budget.</p>
+        <p class="section-description">Our wedding planning experts and best photographer of Hisar—the photographer near me in Hisar trusted by couples—will guide you through venues plus wedding photography in Hisar, pre-wedding concepts, portrait photography, birthday photography, food photography in Hisar, and corporate photography in Hisar.</p>
       </div>
 
       <div class="contact-grid">
@@ -92,13 +107,13 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <h3>Mehar Film</h3>
-          <p>Capturing your precious moments with elegance and artistry. Premium wedding and pre-wedding photography services that tell your unique story.</p>
+          <p>Luxury Photography & Film Company for best wedding photography in Hisar, pre-wedding photography in Hisar, portrait photography, birthday celebrations, food photography in Hisar, and corporate photography in Hisar.</p>
         </div>
         
         <div class="footer-section">
           <h4>Quick Links</h4>
           <ul class="footer-links">
-            <li><a href="index.html">Home</a></li>
+            <li><a href="/">Home</a></li>
             <li><a href="stories.html">Stories</a></li>
             <li><a href="venues.html">Venues</a></li>
             <li><a href="makeup-artists.html">Makeup Artists</a></li>
@@ -179,6 +194,15 @@
         container.appendChild(card);
       });
     });
+  </script>
+  <script>
+    (function() {
+      const { pathname, search, hash } = window.location;
+      if (pathname.endsWith('/index.html')) {
+        const cleanPath = pathname.replace(/index\.html$/, '/') || '/';
+        history.replaceState({}, '', `${cleanPath}${search}${hash}`);
+      }
+    })();
   </script>
 </body>
 </html>
