@@ -80,16 +80,6 @@
     </div>
   </section>
 
-  <!-- Pre-Wedding Focus -->
-  <section class="section bg-silver">
-    <div class="container">
-      <div class="section-header fade-in">
-        <h2 class="section-title">Pre-Wedding Stories for Hisar Couples</h2>
-        <p class="section-description">Browse the best pre-wedding photography in Hisar featuring destination shoots across Nabha, Jaipur, Manali, Goa, and Kolkata—captured by our Luxury Photography & Film Company.</p>
-      </div>
-      <div id="prewed-stories-grid" class="grid grid-cols-3"></div>
-    </div>
-  </section>
 
   <!-- Story Modal -->
   <div id="story-modal" class="story-modal">
@@ -261,18 +251,6 @@
       });
     }
     
-    function renderPreWeddingHighlights() {
-      const container = document.getElementById('prewed-stories-grid');
-      if (!container) return;
-      
-      const stories = resolveStoriesData();
-      if (!stories) return;
-      
-      const preWeddingStories = stories.filter(story => story.type === 'pre-wedding');
-      container.innerHTML = '';
-      preWeddingStories.forEach(story => container.appendChild(createStoryCard(story)));
-    }
-    
     // Open story modal
     function openStoryModal(story) {
       const modal = document.getElementById('story-modal');
@@ -331,7 +309,6 @@
     // Filter functionality
     document.addEventListener('DOMContentLoaded', () => {
       renderStories('all');
-      renderPreWeddingHighlights();
       
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
