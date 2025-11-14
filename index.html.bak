@@ -33,37 +33,6 @@
   <link rel="stylesheet" href="css/components.css?v=2.1">
   <link rel="stylesheet" href="css/animations.css?v=2.1" media="print" onload="this.media='all'">
   <noscript><link rel="stylesheet" href="css/animations.css?v=2.1"></noscript>
-  
-  <!-- JSON-LD Structured Data for Local SEO -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Mehar Film",
-    "alternateName": "Mehar Film — Luxury Photography & Film Company",
-    "image": "https://meharfilm.com/public/image-page-data/wedding/UWF09905.jpeg",
-    "description": "Mehar Film — Luxury Photography & Film Company. Premium wedding photography & videography in Hisar, Noida and Gurugram.",
-    "url": "https://meharfilm.com/",
-    "telephone": "+91-9518470034",
-    "email": "meharfilm@gmail.com",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Hisar",
-      "addressRegion": "Haryana",
-      "addressCountry": "IN"
-    },
-    "areaServed": [
-      "Hisar",
-      "Hisar, Haryana",
-      "Noida",
-      "Gurugram"
-    ],
-    "priceRange": "$$-$$$",
-    "sameAs": [
-      "https://instagram.com/mehar_film"
-    ]
-  }
-  </script>
 </head>
 <body>
   <!-- Header -->
