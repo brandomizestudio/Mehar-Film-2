@@ -28,7 +28,9 @@
 
 .gallery-wrapper {
   position: relative;
-  padding: 0 2rem;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
 }
 
 .gallery-container {
@@ -37,31 +39,20 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  padding: 0 0 1rem 0;
+  padding: 0 1.5rem 1rem;
+  scroll-padding-left: 1.5rem;
+  scroll-padding-right: 1.5rem;
 }
 
-/* Add spacing for first item */
-.gallery-item:first-child {
-  margin-left: 1.5rem;
-}
-
-/* Add spacing for last item */
-.gallery-item:last-child {
-  margin-right: 1.5rem;
-}
-
-/* Mobile adjustments */
 @media (max-width: 768px) {
   .gallery-wrapper {
     padding: 0 1rem;
   }
   
-  .gallery-item:first-child {
-    margin-left: 1rem;
-  }
-  
-  .gallery-item:last-child {
-    margin-right: 1rem;
+  .gallery-container {
+    padding: 0 1rem 1rem;
+    scroll-padding-left: 1rem;
+    scroll-padding-right: 1rem;
   }
 }
 
