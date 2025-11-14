@@ -36,7 +36,21 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  padding: 0 1.5rem 1rem;
+  padding: 0 2rem 1rem 2rem;
+}
+
+/* Ensure first and last items have proper spacing */
+.gallery-container::before,
+.gallery-container::after {
+  content: '';
+  flex: 0 0 0.5rem;
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .gallery-container {
+    padding: 0 1.5rem 1rem 1.5rem;
+  }
 }
 
 .gallery-item {
