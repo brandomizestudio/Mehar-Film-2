@@ -402,6 +402,14 @@
       }
       
       const featured = stories.slice(0, 3);
+      const getHeroAltText = (story) => {
+        const context = story.type === 'pre-wedding' ? 'pre-wedding photography in Hisar' : 'wedding photography in Hisar';
+        return `${story.coupleName} ${context} at ${story.location}`;
+      };
+      const getGalleryAltText = (story, index) => {
+        const context = story.type === 'pre-wedding' ? 'pre-wedding photography in Hisar' : 'wedding photography in Hisar';
+        return `${story.coupleName} ${context} gallery frame ${index + 1} at ${story.location}`;
+      };
       
       featured.forEach(story => {
         const card = document.createElement('div');
@@ -409,7 +417,7 @@
         card.innerHTML = `
           <a href="#" class="story-card-link" data-story-id="${story.id}">
             <div class="card-image">
-              <img src="${story.heroImage}" alt="${story.coupleName} - ${story.location}" loading="lazy">
+              <img src="${story.heroImage}" alt="${getHeroAltText(story)}" loading="lazy">
               <span class="story-badge">${story.type === 'pre-wedding' ? 'Pre-Wedding' : 'Wedding'}</span>
             </div>
             <div class="card-content">
@@ -439,7 +447,7 @@
         
         // Populate modal content
         document.getElementById('modal-hero-image').src = story.heroImage;
-        document.getElementById('modal-hero-image').alt = story.coupleName;
+        document.getElementById('modal-hero-image').alt = getHeroAltText(story);
         document.getElementById('modal-badge').textContent = story.type === 'pre-wedding' ? 'Pre-Wedding' : 'Wedding';
         document.getElementById('modal-couple-name').textContent = story.coupleName;
         document.getElementById('modal-location').textContent = story.location;
@@ -449,12 +457,12 @@
         // Populate gallery
         const gallery = document.getElementById('modal-gallery');
         gallery.innerHTML = '';
-        story.images.forEach(image => {
+        story.images.forEach((image, index) => {
           const item = document.createElement('div');
           item.className = 'story-modal-gallery-item';
           const img = document.createElement('img');
           img.src = image;
-          img.alt = `${story.coupleName} gallery photo`;
+          img.alt = getGalleryAltText(story, index);
           img.loading = 'lazy';
 
           const applyOrientation = () => {

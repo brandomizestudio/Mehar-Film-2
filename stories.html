@@ -80,6 +80,17 @@
     </div>
   </section>
 
+  <!-- Pre-Wedding Focus -->
+  <section class="section bg-silver">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2 class="section-title">Pre-Wedding Stories for Hisar Couples</h2>
+        <p class="section-description">Browse the best pre-wedding photography in Hisar featuring destination shoots across Nabha, Jaipur, Manali, Goa, and Kolkata—captured by our Luxury Photography & Film Company.</p>
+      </div>
+      <div id="prewed-stories-grid" class="grid grid-cols-3"></div>
+    </div>
+  </section>
+
   <!-- Story Modal -->
   <div id="story-modal" class="story-modal">
     <div class="story-modal-overlay"></div>
@@ -162,6 +173,53 @@
   <script>
     let currentFilter = 'all';
     
+    function resolveStoriesData() {
+      return typeof storiesData !== 'undefined'
+        ? storiesData
+        : (typeof window !== 'undefined' && window.storiesData ? window.storiesData : null);
+    }
+    
+    function getHeroAltText(story) {
+      const context = story.type === 'pre-wedding' ? 'pre-wedding photography in Hisar' : 'wedding photography in Hisar';
+      return `${story.coupleName} ${context} at ${story.location}`;
+    }
+    
+    function getGalleryAltText(story, index = 0) {
+      const context = story.type === 'pre-wedding' ? 'pre-wedding photography in Hisar' : 'wedding photography in Hisar';
+      return `${story.coupleName} ${context} gallery frame ${index + 1} at ${story.location}`;
+    }
+    
+    function createStoryCard(story) {
+      const card = document.createElement('div');
+      card.className = 'story-card';
+      const heroAlt = getHeroAltText(story);
+      card.innerHTML = `
+        <a href="#" class="story-card-link" data-story-id="${story.id}">
+          <div class="card-image">
+            <img src="${story.heroImage}" alt="${heroAlt}" loading="lazy">
+            <span class="story-badge">${story.type === 'pre-wedding' ? 'Pre-Wedding' : 'Wedding'}</span>
+          </div>
+          <div class="card-content">
+            <h3>${story.coupleName}</h3>
+            <p class="card-location">
+              <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+              ${story.location}
+            </p>
+            <p class="story-excerpt">${story.excerpt}</p>
+            <span class="story-link">View Story →</span>
+          </div>
+        </a>
+      `;
+      
+      const link = card.querySelector('.story-card-link');
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        openStoryModal(story);
+      });
+      
+      return card;
+    }
+    
     function renderStories(filter = 'all') {
       const container = document.getElementById('stories-grid');
       const emptyState = document.getElementById('empty-state');
@@ -171,8 +229,7 @@
         return;
       }
       
-      // Check for storiesData in multiple ways
-      const stories = typeof storiesData !== 'undefined' ? storiesData : (typeof window !== 'undefined' && window.storiesData ? window.storiesData : null);
+      const stories = resolveStoriesData();
       
       if (!stories) {
         console.error('storiesData is not defined');
@@ -199,35 +256,21 @@
         emptyState.style.display = 'none';
       }
       
-      filtered.forEach((story, index) => {
-        const card = document.createElement('div');
-        card.className = 'story-card';
-        card.innerHTML = `
-          <a href="#" class="story-card-link" data-story-id="${story.id}">
-            <div class="card-image">
-              <img src="${story.heroImage}" alt="${story.coupleName} - ${story.location}" loading="lazy">
-              <span class="story-badge">${story.type === 'pre-wedding' ? 'Pre-Wedding' : 'Wedding'}</span>
-            </div>
-            <div class="card-content">
-              <h3>${story.coupleName}</h3>
-              <p class="card-location">
-                <svg fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" stroke="currentColor"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
-                ${story.location}
-              </p>
-              <p class="story-excerpt">${story.excerpt}</p>
-              <span class="story-link">View Story →</span>
-            </div>
-          </a>
-        `;
-        container.appendChild(card);
-        
-        // Add click event to open modal
-        const link = card.querySelector('.story-card-link');
-        link.addEventListener('click', (e) => {
-          e.preventDefault();
-          openStoryModal(story);
-        });
+      filtered.forEach(story => {
+        container.appendChild(createStoryCard(story));
       });
+    }
+    
+    function renderPreWeddingHighlights() {
+      const container = document.getElementById('prewed-stories-grid');
+      if (!container) return;
+      
+      const stories = resolveStoriesData();
+      if (!stories) return;
+      
+      const preWeddingStories = stories.filter(story => story.type === 'pre-wedding');
+      container.innerHTML = '';
+      preWeddingStories.forEach(story => container.appendChild(createStoryCard(story)));
     }
     
     // Open story modal
@@ -236,7 +279,7 @@
       
       // Populate modal content
       document.getElementById('modal-hero-image').src = story.heroImage;
-      document.getElementById('modal-hero-image').alt = story.coupleName;
+      document.getElementById('modal-hero-image').alt = getHeroAltText(story);
       document.getElementById('modal-badge').textContent = story.type === 'pre-wedding' ? 'Pre-Wedding' : 'Wedding';
       document.getElementById('modal-couple-name').textContent = story.coupleName;
       document.getElementById('modal-location').textContent = story.location;
@@ -246,12 +289,12 @@
       // Populate gallery
       const gallery = document.getElementById('modal-gallery');
       gallery.innerHTML = '';
-      story.images.forEach(image => {
+      story.images.forEach((image, index) => {
         const item = document.createElement('div');
         item.className = 'story-modal-gallery-item';
         const img = document.createElement('img');
         img.src = image;
-        img.alt = `${story.coupleName} gallery photo`;
+        img.alt = getGalleryAltText(story, index);
         img.loading = 'lazy';
 
         const applyOrientation = () => {
@@ -288,6 +331,7 @@
     // Filter functionality
     document.addEventListener('DOMContentLoaded', () => {
       renderStories('all');
+      renderPreWeddingHighlights();
       
       document.querySelectorAll('.filter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
