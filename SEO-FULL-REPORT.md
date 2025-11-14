@@ -344,17 +344,17 @@ All pages have complete Twitter Card implementation:
 
 All main pages have substantial content (>400 words):
 
-| Page | Estimated Word Count | H2 Tags | Content Status |
-|------|---------------------|---------|----------------|
-| index.html | ~800 words | 5 H2s | ✅ Excellent |
-| gallery.html | ~500 words | 2 H2s | ✅ Good |
-| stories.html | ~450 words | 2 H2s | ✅ Good |
-| story-detail.html | Dynamic | Dynamic | ✅ Dynamic |
-| makeup-artists.html | ~600 words | 3 H2s | ✅ Good |
-| venues.html | ~550 words | 2 H2s | ✅ Good |
-| test-venues.html | ~150 words | 1 H1 | ⚠️ Test page (noindex) |
+| Page | Estimated Word Count | H2 Tags | Content Status | SEO Content Added |
+|------|---------------------|---------|----------------|-------------------|
+| index.html | ~1,200 words | 7 H2s | ✅ Excellent | ✅ 2 sections (Luxury wedding + FAQ) |
+| gallery.html | ~700 words | 3 H2s | ✅ Excellent | ✅ 1 section (Portfolio) |
+| stories.html | ~650 words | 3 H2s | ✅ Excellent | ✅ 1 section (Stories) |
+| story-detail.html | ~600 words | Dynamic + 1 | ✅ Good | ✅ 1 section (Photography) |
+| makeup-artists.html | ~800 words | 4 H2s | ✅ Excellent | ✅ 1 section (Makeup) |
+| venues.html | ~750 words | 3 H2s | ✅ Excellent | ✅ 1 section (Venues) |
+| test-venues.html | ~150 words | 1 H1 | ⚠️ Test page (noindex) | N/A |
 
-**Note:** No additional content blocks were needed as all public pages already meet the 400-600 word target.
+**SEO Content Blocks Added:** 7 sections across 6 pages with natural Hisar keyword integration and H2 headings.
 
 ---
 
