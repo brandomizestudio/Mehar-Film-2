@@ -28,9 +28,6 @@
 
 .gallery-wrapper {
   position: relative;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 1.5rem;
 }
 
 .gallery-container {
@@ -39,20 +36,13 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   scroll-snap-type: x mandatory;
-  padding: 0 1.5rem 1rem;
-  scroll-padding-left: 1.5rem;
-  scroll-padding-right: 1.5rem;
+  padding: 0 0 1rem;
+  scroll-padding: 1.5rem;
 }
 
 @media (max-width: 768px) {
-  .gallery-wrapper {
-    padding: 0 1rem;
-  }
-  
   .gallery-container {
-    padding: 0 1rem 1rem;
-    scroll-padding-left: 1rem;
-    scroll-padding-right: 1rem;
+    scroll-padding: 1rem;
   }
 }
 
